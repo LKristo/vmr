@@ -30,7 +30,7 @@ class Application extends SilexApplication
         parent::__construct($values);
 
         $this->configureServices();
-        $this->createeDBTables();    
+        $this->createDBTables();    
         $this->configureControllers();
 
     }
@@ -59,7 +59,7 @@ class Application extends SilexApplication
 		]);
     }
 
-    private function createDBTablees() {
+    private function createDBTables() {
     	        if (!$this['db']->getSchemaManager()->tablesExist('bookings')) {
             $this['db']->executeQuery("CREATE TABLE bookings (
                 id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -82,7 +82,7 @@ class Application extends SilexApplication
     private function configureControllers() {
 
         $this->get('/bookings/create', function () {
-            	$form = $this['form.factory']->createBuilder(FormType::class)
+            																		$form = $this['form.factory']->createBuilder(FormType::class)
                 ->add('firstName', TextType::class, ['required' => true])
                 ->add('lastName', TextType::class, ['required' => true])
                 ->add('phone', TextType::class, ['required' => true])
